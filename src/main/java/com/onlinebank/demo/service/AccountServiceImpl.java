@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
+import java.util.List;
 
 import static java.math.BigDecimal.ZERO;
 
@@ -84,5 +85,11 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public AppUser findUserByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public void deleteUser(String username) {
+        AppUser user =userRepository.findByUsername(username);
+        userRepository.delete(user);
     }
 }

@@ -7,6 +7,8 @@ import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin("*")
 public class UserController {
@@ -26,6 +28,12 @@ public class UserController {
 	public AppUser userByUsername(@RequestBody UserName userName){
 		return bankService.userByUsername(userName.getUsername());
 	}
+
+	@PostMapping("/delete")
+	public void deleteByUsername(@RequestBody String userName){
+		accountService.deleteUser(userName);
+	}
+
 }
 @Data
 class UserName{
